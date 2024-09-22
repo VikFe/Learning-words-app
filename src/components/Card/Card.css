@@ -1,0 +1,18 @@
+.card__container {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 15px;
+    cursor: pointer;
+    font: normal 14px / 1 'Montserrat', sans-serif;
+  }
+
+  .card {
+    width: 20%;
+    margin: 2px 0.7% 15px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.07);
+    font-size: 15px;
+    text-align: center;
+    background: radial-gradient(circle, rgba(240,212,224,1) 0%, rgba(148,187,233,1) 100%);
+}
