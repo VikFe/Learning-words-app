@@ -1,8 +1,10 @@
 import './App.css';
 import Header from './components/Header/Header';
-import words from './words';
+import words from '../src/words.json';
 import Footer from './components/Footer/Footer';
+import Table from './components/Table/Table'
 import Card from './components/Card/Card'
+
 
 function App() {
   return (
@@ -17,8 +19,11 @@ function App() {
         russian={card.russian}
         
         />
+        
+        
       ))}
       </main>
+      <Table initialWords={words} />
       <Footer />
     </div>
   );

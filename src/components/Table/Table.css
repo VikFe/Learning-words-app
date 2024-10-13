@@ -1,0 +1,115 @@
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    src: url(../../Fonts/Montserrat-VariableFont_wght.ttf) format("ttf");
+}
+
+table {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 1px solid #dddddd;
+	border-collapse: collapse; 
+    font-family: 'Montserrat', sans-serif;
+    
+}
+table th {
+	font-weight: bold;
+	padding: 5px;
+	background: #efefef;
+	border: 1px solid #dddddd;
+}
+table td {
+	border: 1px solid #dddddd;
+	padding: 5px;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+.button-save {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: transparent url(../../assets/image/save.png) no-repeat center/cover;
+    margin-left: 15px;
+}
+
+.button-save:hover::after {
+    content: "Сохранить";
+    position: absolute;
+    top: -30px;
+    left: -50%;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.button-cancel {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: transparent url(../../assets/image/cancel.png) no-repeat center/cover;
+    margin-left: 25px;
+}
+
+.button-cancel:hover::after {
+    content: "Отменить";
+    position: absolute;
+    top: -30px;
+    left: -50%;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.button-edit {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: transparent url(../../assets/image/edit.png) no-repeat center/cover;
+    margin-left: 15px;
+}
+
+.button-edit:hover::after {
+    content: "Редактировать";
+    position: absolute;
+    top: -30px;
+    left: -50%;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.button-delete {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: transparent url(../../assets/image/delete.png) no-repeat center/cover;
+    margin-left: 25px;
+}
+
+.button-delete:hover::after {
+    content: "Удалить";
+    position: absolute;
+    top: -30px;
+    left: -50%;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.cell-button {
+    /* width: 16%; */
+    
+    
+}

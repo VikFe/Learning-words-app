@@ -1,18 +1,24 @@
+import React, { useState } from "react";
 import "../Card/Card.css";
-function Card({
-  id,
-  english,
-  transcription,
-  russian,
-  tags,
-  tags_json,
-  boolean,
-}) {
+
+function Card({ english, transcription, russian }) {
+  const [showTranslation, setShowTranslation] = useState(false);
+
+  const toggleTranslation = () => {
+    setShowTranslation(true);
+  };
+
   return (
     <div className="card">
       <h3>{english}</h3>
       <p>{transcription}</p>
-      <p>{russian}</p>
+      {showTranslation ? (
+        <p>{russian}</p>
+      ) : (
+        <button className="button-translation" onClick={toggleTranslation}>
+          Перевод
+        </button>
+      )}
     </div>
   );
 }

@@ -1,6 +1,12 @@
+import "../Header/Header.css";
+
 function Header() {
-  return;
-  <header className="header">Header</header>;
+  return (
+    <div className="container">
+      <img src="./images/logo.jpg" alt="Logo" className="header__logo" />
+      <header className="header">VocabVerse</header>
+    </div>
+  );
 }
 
 export default Header;
