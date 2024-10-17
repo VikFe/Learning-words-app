@@ -8,12 +8,21 @@ const Button = styled.button`
   background: transparent;
   margin-right: 15px;
 
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.2);
+    transition: transform 0.5s ease;
+  }
 `;
 
-const CardListButton = ({ children, onClick }) => {
-  return <Button onClick={onClick}>{children}</Button>;
+const CardListButton = ({ onClick, className, animationClass, children }) => {
+  return (
+    <Button
+      onClick={onClick}
+      className={`card-list-button ${className} ${animationClass}`}
+    >
+      {children}
+    </Button>
+  );
 };
 
 export default CardListButton;

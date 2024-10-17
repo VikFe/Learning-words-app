@@ -34,7 +34,11 @@ function CardList({ words }) {
 
   return (
     <CardListContainer className={`card-container ${animationClassName}`}>
-      <CardListButton onClick={showPrevCard} className="scale-on-hover">
+      <CardListButton
+        onClick={showPrevCard}
+        className="scale-on-hover"
+        animationClass={animationClassName}
+      >
         <img
           src={leftArrow}
           alt="Left arrow"
@@ -46,7 +50,11 @@ function CardList({ words }) {
         transcription={words[currentIndex].transcription}
         russian={words[currentIndex].russian}
       />
-      <CardListButton onClick={showNextCard} className="scale-on-hover">
+      <CardListButton
+        onClick={showNextCard}
+        className="scale-on-hover"
+        animationClass={animationClassName}
+      >
         <img
           src={rightArrow}
           alt="right arrow"
