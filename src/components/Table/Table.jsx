@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Table.css";
-// import words from "../../words.json";
 
 export default function Table({ initialWords }) {
   const [editingRow, setEditingRow] = useState(null);
