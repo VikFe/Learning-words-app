@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "../Card/Card.css";
 
-function Card({ english, transcription, russian }) {
-  const [showTranslation, setShowTranslation] = useState(false);
+function Card({
+  english,
+  transcription,
+  russian,
+  showTranslation,
+  toggleTranslation,
+}) {
+  // const [showTranslation, setShowTranslation] = useState(false);
 
-  const toggleTranslation = () => {
-    setShowTranslation(true);
-  };
+  // const toggleTranslation = () => {
+  //   setShowTranslation(true);
+  // };
 
   return (
     <div className="card">
