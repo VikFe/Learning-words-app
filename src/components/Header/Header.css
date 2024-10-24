@@ -4,18 +4,60 @@
     src: url(../../Fonts/Montserrat-VariableFont_wght.ttf) format("ttf");
 }
 
-.container {
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #BFC7E6;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+    
+
+}
+.header__wrapper {
     display: flex;
     align-items: center;
-
+    gap: 15px;
+    padding-left: 20px;
+    
 }
+
 
 .header__logo {
-    width: 120px;
+    width: 50px;
 }
 
-.header {
+
+.header__name {
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     text-shadow: 2px 2px 4px rgba(0, 0.3, 0.5, 0.5)
+}
+
+.header__nav {
+    padding-right: 30px;
+}
+
+.header__nav-list {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    /* cursor: pointer; */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+.header__link {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+
+.header__link:hover {
+    color: aliceblue;
+    
 }

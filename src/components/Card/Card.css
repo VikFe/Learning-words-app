@@ -7,21 +7,24 @@
 .card__container {
     display: flex;
     justify-content: center;
-    padding: 30px;
+    margin: 130px;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
   }
 
   .card {
-    width: 230px;
-    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 200px;
+    height: 250px;
     padding: 20px 20px;
-    /* margin: 2px 0.7% 15px; */
     border-radius: 10px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.07);
     font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    text-align: center;
+    font-size: 18px;
     background: radial-gradient(circle, rgba(240,212,224,1) 0%, rgba(148,187,233,1) 100%);
 }
 
