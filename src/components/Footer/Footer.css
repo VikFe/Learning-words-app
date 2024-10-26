@@ -1,7 +1,14 @@
 .footer {
     background-color: rgb(228, 225, 221);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
     /* margin: auto; */
     /* width: 100%; */
 
+}
+
+.footer-img {
+    width: 100px;
+    
 }

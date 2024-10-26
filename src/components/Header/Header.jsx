@@ -6,7 +6,11 @@ function Header() {
     <header className="header">
       <div className="header__wrapper">
         <Link to="/">
-          <img src="./images/logo.png" alt="Logo" className="header__logo" />
+          <img
+            src="./images/cat-book.png"
+            alt="Logo"
+            className="header__logo"
+          />
         </Link>
         <div className="header__name">VocabVerse</div>
       </div>
