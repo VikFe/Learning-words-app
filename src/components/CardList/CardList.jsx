@@ -3,8 +3,8 @@ import Card from "../Card/Card";
 import "../CardList/CardList.css";
 import CardListButton from "../CardListButton/CardListButton";
 import CardListContainer from "../CardList/CardListContainer";
-import leftArrow from "../../arrow_left.png";
-import rightArrow from "../../arrow_right.png";
+import leftArrow from "../../left-arrow.png";
+import rightArrow from "../../right-arrow.png";
 
 function CardList({ words }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -49,7 +49,7 @@ function CardList({ words }) {
         <img
           src={leftArrow}
           alt="Left arrow"
-          style={{ width: "30px", height: "30px" }}
+          style={{ width: "45px", height: "45px" }}
         />
       </CardListButton>
       <Card
@@ -67,7 +67,7 @@ function CardList({ words }) {
         <img
           src={rightArrow}
           alt="right arrow"
-          style={{ width: "30px", height: "30px" }}
+          style={{ width: "45px", height: "45px" }}
         />
       </CardListButton>
     </CardListContainer>

@@ -1,5 +1,7 @@
-
 .footer {
-    background-color: #BFC7E6;
+    background-color: rgb(228, 225, 221);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* margin: auto; */
+    /* width: 100%; */
+
 }

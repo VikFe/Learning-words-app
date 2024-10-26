@@ -5,14 +5,17 @@ import Footer from './components/Footer/Footer';
 import Table from './components/Table/Table';
 import Card from './components/Card/Card';
 import CardList from './components/CardList/CardList';
+import NotFound from './components/NotFound/NotFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Header />
-          <main className='card__container'>
+          <main>
+            <div className='card__container'>
             <Routes>
               <Route path='/' element={<Table initialWords={words} />} />
               <Route path='/cards' element={
@@ -28,7 +31,10 @@ function App() {
                 </CardList>
                 }
               />
+              <Route path='*' element={<NotFound />}
+              />
             </Routes>
+            </div>
           </main>
         <Footer />
       </div>
