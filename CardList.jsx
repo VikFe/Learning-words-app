@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Card from "../Card/Card";
 import "../CardList/CardList.css";
 import CardListButton from "../CardListButton/CardListButton";
@@ -10,6 +10,38 @@ function CardList({ words }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animationDirection, setAnimationDirection] = useState("");
   const [showTranslation, setShowTranslation] = useState(false);
+  const [wordsStudied, setWordsStudied] = useState(0);
+
+  // Ссыдка на кнопку перевода
+  const toggleButtonRef = useRef(null);
+
+  //Фокус на кнопку при изменении карточки
+  useEffect(() => {
+    if (toggleButtonRef.current) {
+      toggleButtonRef.current.focus();
+    }
+  }, [currentIndex]);
+
+  //Обработчик нажатия клавиш
+
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowRight") {
+      showNextCard();
+    } else if (event.key === "ArrowLeft") {
+      showPrevCard();
+    } else if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggleTranslation();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const showNextCard = () => {
     setAnimationDirection("next");
@@ -29,6 +61,10 @@ function CardList({ words }) {
 
   const toggleTranslation = () => {
     setShowTranslation((prev) => !prev); //Переключение состояния показа перевода
+    if (!showTranslation) {
+      // Если перевод показывается, увеличиваем счетчик
+      setWordsStudied((prev) => prev + 1);
+    }
   };
 
   if (!words.length) {
@@ -61,7 +97,15 @@ function CardList({ words }) {
         toggleTranslation={toggleTranslation}
       />
       <CardListButton
-        onClick={showNextCard}
+        onClick={() => {
+          toggleTranslation();
+          showNextCard();
+          if (toggleButtonRef.current) {
+            toggleButtonRef.current.focus();
+          }
+        }}
+        // onClick={showNextCard}
+        ref={toggleButtonRef}
         className="scale-on-hover"
         animationClass={animationClassName}
       >
@@ -71,6 +115,7 @@ function CardList({ words }) {
           style={{ width: "45px", height: "45px" }}
         />
       </CardListButton>
+      <div className="words-study">Изучено слов: {wordsStudied}</div>
     </CardListContainer>
   );
 }
