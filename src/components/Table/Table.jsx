@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Table.css";
+import TableHeader from "./TableHeader";
+import TableBody from "./TableBody";
 
 export default function Table({ initialWords }) {
   const [editingRow, setEditingRow] = useState(null);
@@ -13,104 +15,52 @@ export default function Table({ initialWords }) {
     setEditingRow(null);
   };
 
-  function handleSave() {
-    setUpdatedRows(function (prevRows) {
-      return prevRows.map(function (row) {
-        if (row.id === editingRow) {
-          return {
-            ...row,
-            english: row.updatedEnglish,
-            transcription: row.updatedTranscription,
-            russian: row.updatedRussian,
-          };
-        }
-        return row;
-      });
-    });
-    setEditingRow(null);
-  }
+  const handleSave = () => {
+    const rowToSave = updatedRows.find((row) => row.id === editingRow);
 
-  const handleInputChange = (id, field, value) => {
-    setUpdatedRows((prevRows) => {
-      return prevRows.map((row) => {
-        if (row.id === id) {
-          return {
-            ...row,
-            [field]: value,
-          };
-        }
-        return row;
-      });
+    if (!rowToSave.english || !rowToSave.transcription || !rowToSave.russian) {
+      alert("Ошибка: все поля должны быть заполнены.");
+      return;
+    }
+
+    console.log("Сохраненные параметры:", {
+      english: rowToSave.english,
+      transcription: rowToSave.transcription,
+      russian: rowToSave.russian,
     });
+
+    setUpdatedRows((prevRows) =>
+      prevRows.map((row) =>
+        row.id === editingRow
+          ? {
+              ...row,
+              english: rowToSave.english,
+              transcription: rowToSave.transcription,
+              russian: rowToSave.russian,
+            }
+          : row
+      )
+    );
+
+    setEditingRow(null);
   };
 
+  const handleInputChange = (id, field, value) => {
+    setUpdatedRows((prevRows) =>
+      prevRows.map((row) => (row.id === id ? { ...row, [field]: value } : row))
+    );
+  };
   return (
     <table className="table">
-      <thead>
-        <tr className="string-table">
-          <th>Английский</th>
-          <th>Транскрипция</th>
-          <th>Перевод</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {updatedRows.map((row) => (
-          <tr key={row.id}>
-            {editingRow === row.id ? (
-              <>
-                <td>
-                  <input
-                    type="text"
-                    value={row.english}
-                    onChange={(e) =>
-                      handleInputChange(row.id, "english", e.target.value)
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={row.transcription}
-                    onChange={(e) =>
-                      handleInputChange(row.id, "transcription", e.target.value)
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={row.russian}
-                    onChange={(e) =>
-                      handleInputChange(row.id, "russian", e.target.value)
-                    }
-                  />
-                </td>
-                <td className="cell-button">
-                  <button className="button-save" onClick={handleSave}></button>
-                  <button
-                    className="button-cancel"
-                    onClick={handleCancel}
-                  ></button>
-                </td>
-              </>
-            ) : (
-              <>
-                <td>{row.english}</td>
-                <td>{row.transcription}</td>
-                <td>{row.russian}</td>
-                <td className="cell-button">
-                  <button
-                    className="button-edit"
-                    onClick={() => handleEdit(row.id)}
-                  ></button>
-                  <button className="button-delete"></button>
-                </td>
-              </>
-            )}
-          </tr>
-        ))}
-      </tbody>
+      <TableHeader />
+      <TableBody
+        updatedRows={updatedRows}
+        editingRow={editingRow}
+        onEdit={handleEdit}
+        onSave={handleSave}
+        onCancel={handleCancel}
+        onInputChange={handleInputChange}
+      />
     </table>
   );
 }

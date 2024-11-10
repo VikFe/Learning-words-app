@@ -8,12 +8,6 @@ function Card({
   showTranslation,
   toggleTranslation,
 }) {
-  // const [showTranslation, setShowTranslation] = useState(false);
-
-  // const toggleTranslation = () => {
-  //   setShowTranslation(true);
-  // };
-
   return (
     <div className="card">
       <h3>{english}</h3>

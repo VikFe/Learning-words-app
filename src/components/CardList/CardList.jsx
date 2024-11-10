@@ -22,6 +22,27 @@ function CardList({ words }) {
     }
   }, [currentIndex]);
 
+  //Обработчик нажатия клавиш
+
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowRight") {
+      showNextCard();
+    } else if (event.key === "ArrowLeft") {
+      showPrevCard();
+    } else if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggleTranslation();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const showNextCard = () => {
     setAnimationDirection("next");
     setCurrentIndex((prevIndex) =>
@@ -56,46 +77,47 @@ function CardList({ words }) {
     : "";
 
   return (
-    <CardListContainer className={`card-container ${animationClassName}`}>
-      <CardListButton
-        onClick={showPrevCard}
-        className="scale-on-hover"
-        animationClass={animationClassName}
-      >
-        <img
-          src={leftArrow}
-          alt="Left arrow"
-          style={{ width: "45px", height: "45px" }}
+    <>
+      <CardListContainer className={`card-container ${animationClassName}`}>
+        <CardListButton
+          onClick={showPrevCard}
+          className="scale-on-hover"
+          animationClass={animationClassName}
+        >
+          <img
+            src={leftArrow}
+            alt="Left arrow"
+            style={{ width: "45px", height: "45px" }}
+          />
+        </CardListButton>
+        <Card
+          english={currentWord.english}
+          transcription={currentWord.transcription}
+          russian={currentWord.russian}
+          showTranslation={showTranslation}
+          toggleTranslation={toggleTranslation}
         />
-      </CardListButton>
-      <Card
-        english={currentWord.english}
-        transcription={currentWord.transcription}
-        russian={currentWord.russian}
-        showTranslation={showTranslation}
-        toggleTranslation={toggleTranslation}
-      />
-      <CardListButton
-        onClick={() => {
-          toggleTranslation();
-          showNextCard();
-          if (toggleButtonRef.current) {
-            toggleButtonRef.current.focus();
-          }
-        }}
-        // onClick={showNextCard}
-        ref={toggleButtonRef}
-        className="scale-on-hover"
-        animationClass={animationClassName}
-      >
-        <img
-          src={rightArrow}
-          alt="Right arrow"
-          style={{ width: "45px", height: "45px" }}
-        />
-      </CardListButton>
+        <CardListButton
+          onClick={() => {
+            showNextCard();
+            if (toggleButtonRef.current) {
+              toggleButtonRef.current.focus();
+            }
+          }}
+          // onClick={showNextCard}
+          ref={toggleButtonRef}
+          className="scale-on-hover"
+          animationClass={animationClassName}
+        >
+          <img
+            src={rightArrow}
+            alt="Right arrow"
+            style={{ width: "45px", height: "45px" }}
+          />
+        </CardListButton>
+      </CardListContainer>
       <div className="words-study">Изучено слов: {wordsStudied}</div>
-    </CardListContainer>
+    </>
   );
 }
 

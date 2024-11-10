@@ -1,6 +1,9 @@
 .card__container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 20px;
     margin: 130px;
     cursor: pointer;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
