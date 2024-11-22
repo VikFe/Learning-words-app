@@ -1,18 +1,13 @@
 // TableBody.js
-import React from "react";
+import React, { useContext } from "react";
+import { CardContext } from "../../store/words-context";
 import Row from "./Row";
 
-const TableBody = ({
-  updatedRows,
-  editingRow,
-  onEdit,
-  onSave,
-  onCancel,
-  onInputChange,
-}) => {
+const TableBody = ({ editingRow, onEdit, onSave, onCancel, onInputChange }) => {
+  const { words } = useContext(CardContext);
   return (
     <tbody>
-      {updatedRows.map((row) => (
+      {words.map((row) => (
         <Row
           key={row.id}
           row={row}

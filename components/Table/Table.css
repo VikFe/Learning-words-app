@@ -16,7 +16,6 @@ table th {
 }
 table td {
 	border: 1px solid #dddddd;
-	padding: 5px;
 }
 
 
@@ -106,5 +105,9 @@ button {
     padding: 5px;
     border-radius: 5px;
     display: inline-block;
+}
+
+.table-container {
+    position: relative;
 }
 

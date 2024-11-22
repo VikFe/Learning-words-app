@@ -7,10 +7,11 @@ import Card from './components/Card/Card';
 import CardList from './components/CardList/CardList';
 import NotFound from './components/NotFound/NotFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { CardProvider } from './store/words-context';
 
 function App() {
   return (
+    <CardProvider>
     <Router>
       <div className="App">
         <Header />
@@ -39,6 +40,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </CardProvider>
   );
 }
 

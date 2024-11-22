@@ -1,8 +1,11 @@
 /* eslint-disable no-undef */
 // Row.js
-import React from "react";
+import React, { useContext } from "react";
+import { CardContext } from "../../store/words-context";
 
 const Row = ({ row, isEditing, onEdit, onSave, onCancel, onInputChange }) => {
+  const { editWord, deleteWord } = useContext(CardContext);
+
   const isFieldEmpty = (fieldName) =>
     !row[fieldName] || row[fieldName].trim() === "";
 
@@ -12,6 +15,26 @@ const Row = ({ row, isEditing, onEdit, onSave, onCancel, onInputChange }) => {
     isFieldEmpty("transcription") ||
     isFieldEmpty("russian");
 
+  const handleSave = () => {
+    const updatedWord = {
+      english: row.english,
+      transcription: row.transcription,
+      russian: row.russian,
+    };
+    editWord(row.id, updatedWord);
+    onSave();
+  };
+
+  const handleDelete = () => {
+    if (window.confirm("Вы уверены, что хотите удалить это слово?")) {
+      deleteWord(row.id);
+    }
+  };
+
+  const handleInputChange = (field, value) => {
+    onInputChange(row.id, field, value);
+  };
+
   return (
     <tr key={row.id}>
       {isEditing ? (
@@ -20,7 +43,7 @@ const Row = ({ row, isEditing, onEdit, onSave, onCancel, onInputChange }) => {
             <input
               type="text"
               value={row.english}
-              onChange={(e) => onInputChange(row.id, "english", e.target.value)}
+              onChange={(e) => handleInputChange("english", e.target.value)}
               style={{
                 border: isFieldEmpty("english")
                   ? "1px solid red"
@@ -33,7 +56,7 @@ const Row = ({ row, isEditing, onEdit, onSave, onCancel, onInputChange }) => {
               type="text"
               value={row.transcription}
               onChange={(e) =>
-                onInputChange(row.id, "transcription", e.target.value)
+                handleInputChange("transcription", e.target.value)
               }
               style={{
                 border: isFieldEmpty("transcription")
@@ -46,7 +69,7 @@ const Row = ({ row, isEditing, onEdit, onSave, onCancel, onInputChange }) => {
             <input
               type="text"
               value={row.russian}
-              onChange={(e) => onInputChange(row.id, "russian", e.target.value)}
+              onChange={(e) => handleInputChange("russian", e.target.value)}
               style={{
                 border: isFieldEmpty("russian")
                   ? "1px solid red"
@@ -57,7 +80,7 @@ const Row = ({ row, isEditing, onEdit, onSave, onCancel, onInputChange }) => {
           <td className="cell-button">
             <button
               className="button-save"
-              onClick={onSave}
+              onClick={handleSave}
               disabled={isAnyFieldEmpty}
             ></button>
             <button className="button-cancel" onClick={onCancel}></button>
@@ -73,7 +96,7 @@ const Row = ({ row, isEditing, onEdit, onSave, onCancel, onInputChange }) => {
               className="button-edit"
               onClick={() => onEdit(row.id)}
             ></button>
-            <button className="button-delete"></button>
+            <button className="button-delete" onClick={handleDelete}></button>
           </td>
         </>
       )}

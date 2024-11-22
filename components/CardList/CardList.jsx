@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
+import { CardContext } from "../../store/words-context";
 import Card from "../Card/Card";
 import "../CardList/CardList.css";
 import CardListButton from "../CardListButton/CardListButton";
@@ -6,13 +7,14 @@ import CardListContainer from "../CardList/CardListContainer";
 import leftArrow from "../../left-arrow.png";
 import rightArrow from "../../right-arrow.png";
 
-function CardList({ words }) {
+function CardList() {
+  const { words } = useContext(CardContext);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animationDirection, setAnimationDirection] = useState("");
   const [showTranslation, setShowTranslation] = useState(false);
   const [wordsStudied, setWordsStudied] = useState(0);
 
-  // Ссыдка на кнопку перевода
+  // Ссылка на кнопку перевода
   const toggleButtonRef = useRef(null);
 
   //Фокус на кнопку при изменении карточки
