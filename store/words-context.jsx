@@ -7,14 +7,11 @@ export const CardProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // получение всех слов из API
-
   useEffect(() => {
     const fetchWords = () => {
       setLoading(true);
       setError(null);
-
-      fetch("http://itgirlschool.justmakeit.ru/api/words")
+      fetch("/api/words")
         .then((response) => {
           if (!response.ok) {
             throw new Error(
@@ -25,6 +22,7 @@ export const CardProvider = ({ children }) => {
         })
 
         .then((data) => {
+          console.log("Fetched words:", data);
           setWords(data);
         })
         .catch((err) => {
@@ -44,7 +42,7 @@ export const CardProvider = ({ children }) => {
     setLoading(true);
     setError(null);
 
-    fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
+    fetch("/api/words/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +70,7 @@ export const CardProvider = ({ children }) => {
     setLoading(true);
     setError(null);
 
-    fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/update`, {
+    fetch(`/api/words/${id}/update`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -104,7 +102,7 @@ export const CardProvider = ({ children }) => {
   const deleteWord = (id) => {
     setLoading(true);
     setError(null);
-    fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
+    fetch(`/api/words/${id}/delete`, {
       method: "POST",
     })
       .then((response) => {
@@ -129,3 +127,5 @@ export const CardProvider = ({ children }) => {
     </CardContext.Provider>
   );
 };
+
+export default CardContext;
